@@ -23,7 +23,8 @@ public class Learner {
 		this.paxos = paxos;
 		this.commService = commService;
 		this.countAccept = new HashMap<BallotNumber, Integer>();
-		this.countDecide = new HashMap<BallotNumber, Integer>();
+		//this.countDecide = new HashMap<BallotNumber, Integer>();
+		this.countDecide = new ArrayList<String>();
 		this.log = log;
 	}
 
@@ -47,13 +48,14 @@ public class Learner {
 		}
 	}
 
-	public synchronized void ReceiveDecide(final BallotNumber bal, final Double val) {
+	public synchronized void ReceiveDecide(final BallotNumber bal, final Double val, String ip) {
 		// decide v
 		paxos.acceptVal = null;
 		log.Write(bal, val, paxos.logIndex);
 		
-		countDecide.put(bal,
-				(countDecide.get(bal) == null ? 0 : countDecide.get(bal)) + 1);
+		//countDecide.put(bal,
+		//		(countDecide.get(bal) == null ? 0 : countDecide.get(bal)) + 1);
+		countDecide.add(ip);
 		if (!sending && countDecide.get(bal) < 5 ) {
 			sending = true;
 			new Thread() {
