@@ -47,7 +47,7 @@ public class Learner {
 		}
 	}
 
-	public void ReceiveDecide(final BallotNumber bal, final Double val) {
+	public synchronized void ReceiveDecide(final BallotNumber bal, final Double val) {
 		// decide v
 		paxos.acceptVal = null;
 		log.Write(bal, val, paxos.logIndex);
