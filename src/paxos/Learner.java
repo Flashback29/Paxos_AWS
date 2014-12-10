@@ -47,7 +47,7 @@ public class Learner {
 		}
 	}
 
-	public void ReceiveDecide(BallotNumber bal, Double val) {
+	public void ReceiveDecide(final BallotNumber bal, final Double val) {
 		// decide v
 		paxos.acceptVal = null;
 		log.Write(bal, val, paxos.logIndex);
@@ -55,22 +55,6 @@ public class Learner {
 		countDecide.put(bal,
 				(countDecide.get(bal) == null ? 0 : countDecide.get(bal)) + 1);
 		if (!sending && countDecide.get(bal) < 5 ) {
-			sending = true;
-			new Thread() {
-				public void run() {
-				}
-			}.start();
-		}
-	}
-	
-	public void ReceiveEnhancedDecide(BallotNumber bal, ArrayList<Double> val) {
-		// decide v
-		paxos.acceptVal = null;
-		log.EnhancedWrite(bal, val, paxos.logIndex);
-		
-		countDecide.put(bal,
-				(countDecide.get(bal) == null ? 0 : countDecide.get(bal)) + 1);
-		if (!sending&& countDecide.get(bal) < 5 ) {
 			sending = true;
 			new Thread() {
 				public void run() {
@@ -87,6 +71,21 @@ public class Learner {
 						}
 					}
 				}
+			}.start();
+		}
+	}
+	
+	public void ReceiveEnhancedDecide(BallotNumber bal, ArrayList<Double> val) {
+		// decide v
+		paxos.acceptVal = null;
+		log.EnhancedWrite(bal, val, paxos.logIndex);
+		
+		countDecide.put(bal,
+				(countDecide.get(bal) == null ? 0 : countDecide.get(bal)) + 1);
+		if (!sending&& countDecide.get(bal) < 5 ) {
+			sending = true;
+			new Thread() {
+				
 			}.start();
 		}
 	}
