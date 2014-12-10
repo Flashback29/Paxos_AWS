@@ -185,7 +185,7 @@ public class CommService extends Thread {
 						Message.Decide message = new Message.Decide(msg);
 						if(!message.modify){
 							learner.get(index).ReceiveDecide(message.accpetNum,
-									message.acceptVal);
+									message.acceptVal,ip);
 						}
 						else{
 							learner.get(index).ReceiveEnhancedDecide(message.accpetNum,
