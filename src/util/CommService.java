@@ -134,7 +134,7 @@ public class CommService extends Thread {
 					if (type.equals("Decide")) {
 						Message.Decide message = new Message.Decide(msg);
 						learner.get(index).ReceiveDecide(message.accpetNum,
-								message.acceptVal);
+								message.acceptVal,ip);
 					}
 					return;
 				}
