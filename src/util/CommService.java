@@ -134,7 +134,7 @@ public class CommService extends Thread {
 					if (type.equals("Decide")) {
 						Message.Decide message = new Message.Decide(msg);
 						learner.get(index).ReceiveDecide(message.accpetNum,
-								message.acceptVal,id);
+								message.acceptVal,ip);
 					}
 					return;
 				}
@@ -185,7 +185,7 @@ public class CommService extends Thread {
 						Message.Decide message = new Message.Decide(msg);
 						if(!message.modify){
 							learner.get(index).ReceiveDecide(message.accpetNum,
-									message.acceptVal,id);
+									message.acceptVal,ip);
 						}
 						else{
 							learner.get(index).ReceiveEnhancedDecide(message.accpetNum,
