@@ -2,6 +2,7 @@ package paxos;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 import util.CommService;
@@ -82,13 +83,13 @@ public class Learner {
 		paxos.acceptVal = null;
 		log.EnhancedWrite(bal, val, paxos.logIndex);
 		
-		countDecide.put(bal,
-				(countDecide.get(bal) == null ? 0 : countDecide.get(bal)) + 1);
-		if (!sending&& countDecide.get(bal) < 5 ) {
-			sending = true;
-			new Thread() {
+		//countDecide.put(bal,
+		//		(countDecide.get(bal) == null ? 0 : countDecide.get(bal)) + 1);
+		//if (!sending&& countDecide.get(bal) < 5 ) {
+		//	sending = true;
+		//	new Thread() {
 				
-			}.start();
-		}
+		//	}.start();
+		//}
 	}
 }
