@@ -13,7 +13,7 @@ public class Learner {
 	private Paxos paxos;
 	private CommService commService;
 	private HashMap<BallotNumber, Integer> countAccept;
-	private HashMap<BallotNumber, Integer> countDecide;
+	private Set<String> countDecide;
 	private Log log;
 	private boolean sending = false;
 
