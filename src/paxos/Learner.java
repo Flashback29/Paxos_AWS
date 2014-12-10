@@ -32,7 +32,7 @@ public class Learner {
 	public void ReceiveAccept(BallotNumber bal, Double val) {
 		countAccept.put(bal,
 				(countAccept.get(bal) == null ? 0 : countAccept.get(bal)) + 1);
-		if (countAccept.get(bal) >= paxos.numberOfMajority) {
+		if (countAccept.get(bal) == paxos.numberOfMajority) {
 			// decide v
 			paxos.acceptVal = null;
 			commService.SendDecide(bal, val, paxos.logIndex);
