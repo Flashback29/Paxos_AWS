@@ -24,7 +24,7 @@ public class Learner {
 		this.commService = commService;
 		this.countAccept = new HashMap<BallotNumber, Integer>();
 		//this.countDecide = new HashMap<BallotNumber, Integer>();
-		this.countDecide = new ArrayList<String>();
+		this.countDecide = new HashSet<String>();;
 		this.log = log;
 	}
 
