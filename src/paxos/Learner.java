@@ -57,7 +57,7 @@ public class Learner {
 		//countDecide.put(bal,
 		//		(countDecide.get(bal) == null ? 0 : countDecide.get(bal)) + 1);
 		countDecide.add(ip);
-		if (!sending ) {
+		if (!sending&&countDecide.size() != 5 ) {
 			sending = true;
 			new Thread() {
 				public void run() {
