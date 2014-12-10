@@ -105,8 +105,8 @@ public class CommService extends Thread {
 				final InetSocketAddress address = (InetSocketAddress) clientSocket
 						.getRemoteSocketAddress();
 				final String message = in.readLine();
-				while(!running){
-					
+				if(!running){
+					continue;	
 				}
 				new Thread() {
 					public void run() {
