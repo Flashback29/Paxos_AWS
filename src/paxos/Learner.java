@@ -40,7 +40,7 @@ public class Learner {
 	public void ReceiveEnhancedAccept(BallotNumber bal, ArrayList<Double> val) {
 		countAccept.put(bal,
 				(countAccept.get(bal) == null ? 0 : countAccept.get(bal)) + 1);
-		if (countAccept.get(bal) >= paxos.numberOfMajority) {
+		if (countAccept.get(bal) == paxos.numberOfMajority) {
 			// decide v
 			paxos.appendAcceptVal = null;
 			commService.SendEnhancedDecide(bal, val, paxos.logIndex);
@@ -73,7 +73,20 @@ public class Learner {
 		if (!sending&& countDecide.get(bal) < 5 ) {
 			sending = true;
 			new Thread() {
-
+				public void run() {
+					while (true) {
+						paxos.acceptVal = null;
+						commService.SendDecide(bal, val, paxos.logIndex);
+						System.out.println(countDecide.size());
+						if (countDecide.size() == 5)
+							break;
+						try {
+							Thread.sleep(5000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}
 			}.start();
 		}
 	}
