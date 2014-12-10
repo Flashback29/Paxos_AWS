@@ -2,7 +2,7 @@ package paxos;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Set;
 
 import util.CommService;
 import util.Log;
